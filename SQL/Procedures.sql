@@ -7,7 +7,7 @@ CREATE OR REPLACE PROCEDURE bookstore.addauthor(
 	a_name character varying)
 LANGUAGE 'sql'
 AS $BODY$
-insert into project.bookstore.author values(default, a_name)
+insert into bookstore.author values(default, a_name)
 $BODY$;
 
 -- PROCEDURE: bookstore.addauthortobook(character varying, integer)
@@ -20,7 +20,7 @@ CREATE OR REPLACE PROCEDURE bookstore.addauthortobook(
 	a_id integer)
 LANGUAGE 'sql'
 AS $BODY$
-insert into project.bookstore.wrote values(isbn, a_id)
+insert into bookstore.wrote values(isbn, a_id)
 $BODY$;
 
 -- PROCEDURE: bookstore.addbook(character varying, character varying, integer, numeric, integer, integer, integer)
@@ -38,21 +38,21 @@ CREATE OR REPLACE PROCEDURE bookstore.addbook(
 	stock integer)
 LANGUAGE 'sql'
 AS $BODY$
-insert into project.bookstore.book values(isbn, title, num_pages, price, pub_id, percentage, stock)
+insert into bookstore.book values(isbn, title, num_pages, price, pub_id, percentage, stock)
 $BODY$;
 
 -- PROCEDURE: bookstore.addbookorder(integer, character varying, integer)
--- Adds a book order to the db
+-- Adds a an order of a specific book to the db
 
 -- DROP PROCEDURE bookstore.addbookorder(integer, character varying, integer);
 
 CREATE OR REPLACE PROCEDURE bookstore.addbookorder(
 	o_num integer,
 	isbn character varying,
-	o_count integer)
+	qty integer)
 LANGUAGE 'sql'
 AS $BODY$
-insert into project.bookstore.ordered values(o_num, isbn, o_count)
+insert into bookstore.ordered_book values(o_num, isbn, qty)
 $BODY$;
 
 -- PROCEDURE: bookstore.addgenre(character varying)
@@ -64,7 +64,7 @@ CREATE OR REPLACE PROCEDURE bookstore.addgenre(
 	g_name character varying)
 LANGUAGE 'sql'
 AS $BODY$
-insert into project.bookstore.genre values(g_name)
+insert into bookstore.genre values(g_name)
 $BODY$;
 
 -- PROCEDURE: bookstore.addgenretobook(character varying, character varying)
@@ -77,7 +77,7 @@ CREATE OR REPLACE PROCEDURE bookstore.addgenretobook(
 	genre_name character varying)
 LANGUAGE 'sql'
 AS $BODY$
-insert into project.bookstore.has_genres values(isbn, genre_name)
+insert into bookstore.has_genres values(isbn, genre_name)
 $BODY$;
 
 -- PROCEDURE: bookstore.addpub(character varying, character varying, character varying, character varying, character varying)
@@ -93,7 +93,7 @@ CREATE OR REPLACE PROCEDURE bookstore.addpub(
 	phone_num character varying)
 LANGUAGE 'sql'
 AS $BODY$
-insert into project.bookstore.publisher values(default, bank_info, pub_name, address, email, phone_num)
+insert into bookstore.publisher values(default, bank_info, pub_name, address, email, phone_num)
 $BODY$;
 
 -- PROCEDURE: bookstore.addsale(character varying, date)
@@ -106,7 +106,7 @@ CREATE OR REPLACE PROCEDURE bookstore.addsale(
 	date_sold date)
 LANGUAGE 'sql'
 AS $BODY$
-insert into project.bookstore.sold values(default, isbn, date_sold)
+insert into bookstore.sold values(default, isbn, date_sold)
 $BODY$;
 
 -- PROCEDURE: bookstore.addtocart(character varying, integer, integer)
@@ -121,12 +121,12 @@ CREATE OR REPLACE PROCEDURE bookstore.addtocart(
 LANGUAGE 'plpgsql'
 AS $BODY$
     begin
-        if exists(select * from project.bookstore.cart where isbn = book_isbn AND u_id = user_id) then
-			update project.bookstore.cart set qty = qty + book_qty where isbn = book_isbn and u_id = user_id;
+        if exists(select * from bookstore.cart where isbn = book_isbn AND u_id = user_id) then
+			update bookstore.cart set qty = qty + book_qty where isbn = book_isbn and u_id = user_id;
 		else
-			insert into project.bookstore.cart values (book_isbn, user_id, book_qty);
+			insert into bookstore.cart values (book_isbn, user_id, book_qty);
 		end if;
-		update project.bookstore.book set stock = stock - book_qty where isbn = book_isbn;
+		update bookstore.book set stock = stock - book_qty where isbn = book_isbn;
     end;
             
 $BODY$;
@@ -142,7 +142,7 @@ CREATE OR REPLACE PROCEDURE bookstore.adduser(
 	is_owner boolean DEFAULT false)
 LANGUAGE 'sql'
 AS $BODY$
-insert into project.bookstore.user values(default, username, u_info, is_owner)
+insert into bookstore.user values(default, username, u_info, is_owner)
 $BODY$;
 
 -- PROCEDURE: bookstore.adduserorder(integer, boolean, boolean)
@@ -156,11 +156,11 @@ CREATE OR REPLACE PROCEDURE bookstore.adduserorder(
 	received boolean DEFAULT false)
 LANGUAGE 'sql'
 AS $BODY$
-insert into project.bookstore.user_orders values(default, u_id, is_outgoing, received, CURRENT_DATE, CURRENT_TIME)
+insert into bookstore.orders values(default, u_id, is_outgoing, received, CURRENT_DATE, CURRENT_TIME)
 $BODY$;
 
 -- PROCEDURE: bookstore.checkout(integer)
--- Checkouts the order by creating a user order, adding all the ordered items to ordered table, updating the sold table and emptying the cart
+-- Checkouts the order by creating a user order, adding the ordered book and its quantity to user's total order, updating the sold table and emptying the cart
 
 -- DROP PROCEDURE bookstore.checkout(integer);
 
@@ -168,8 +168,22 @@ CREATE OR REPLACE PROCEDURE bookstore.checkout(
 	user_id integer)
 LANGUAGE 'sql'
 AS $BODY$
-call project.bookstore.addUserOrder(user_id);
-insert into project.bookstore.ordered select o_num, isbn, qty from project.bookstore.cart natural join (select o_num, u_id from project.bookstore.user_orders where u_id = user_id order by o_num desc limit 1) as table_b;
-insert into project.bookstore.sold(isbn, date_sold, qty) select isbn, o_date, qty from project.bookstore.cart natural join (select o_num, u_id, o_date from project.bookstore.user_orders where u_id = user_id order by o_num desc limit 1) as table_b;
-delete from project.bookstore.cart where u_id = user_id
+call bookstore.addUserOrder(user_id);
+insert into bookstore.ordered_book select o_num, isbn, qty from bookstore.cart natural join (select o_num, u_id from bookstore.orders where u_id = user_id order by o_num desc limit 1) as table_b;
+insert into bookstore.sold(isbn, date_sold, qty) select isbn, o_date, qty from bookstore.cart natural join (select o_num, u_id, o_date from bookstore.orders where u_id = user_id order by o_num desc limit 1) as table_b;
+delete from bookstore.cart where u_id = user_id
 $BODY$;
+
+-- PROCEDURE: bookstore.addtobookstock(character varying)
+
+-- DROP PROCEDURE bookstore.addtobookstock(character varying);
+
+CREATE OR REPLACE PROCEDURE bookstore.addtobookstock(
+	book_isbn character varying)
+LANGUAGE 'sql'
+AS $BODY$
+call bookstore.addUserOrder(1, FALSE, TRUE);
+insert into bookstore.ordered_book select o_num, book_isbn, bookstore.calculatebooklastmonthsales(book_isbn) from bookstore.orders where u_id = 1 order by o_num desc limit 1;
+update bookstore.book set stock = stock + (select bookstore.calculatebooklastmonthsales(book_isbn)) where isbn = book_isbn; 
+$BODY$;
+
