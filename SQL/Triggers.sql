@@ -1,4 +1,5 @@
 -- FUNCTION: bookstore.incomingbookorder()
+-- Trigger function to check if an incoming book order is necessary (when there are less than 10 book remaining)
 
 -- DROP FUNCTION bookstore.incomingbookorder();
 
@@ -25,6 +26,7 @@ ALTER FUNCTION bookstore.incomingbookorder()
     OWNER TO postgres;
 
 -- Trigger: addstock
+-- Gets triggered every time a sale is made and call the incomingbookorder() function to check if the owner needs to order more books
 
 -- DROP TRIGGER addstock ON bookstore.sold;
 

@@ -175,6 +175,7 @@ delete from bookstore.cart where u_id = user_id
 $BODY$;
 
 -- PROCEDURE: bookstore.addtobookstock(character varying)
+-- Creates an incoming order for the owner(who has a user_id of 1) and updates the stock with the sum of the last month's sales
 
 -- DROP PROCEDURE bookstore.addtobookstock(character varying);
 
@@ -186,4 +187,27 @@ call bookstore.addUserOrder(1, FALSE, TRUE);
 insert into bookstore.ordered_book select o_num, book_isbn, bookstore.calculatebooklastmonthsales(book_isbn) from bookstore.orders where u_id = 1 order by o_num desc limit 1;
 update bookstore.book set stock = stock + (select bookstore.calculatebooklastmonthsales(book_isbn)) where isbn = book_isbn; 
 $BODY$;
+
+
+-- PROCEDURE: bookstore.removefromcart(character varying, integer)
+-- Allows a user to remove an item from the cart
+
+-- DROP PROCEDURE bookstore.removefromcart(character varying, integer);
+
+CREATE OR REPLACE PROCEDURE bookstore.removefromcart(
+	book_isbn character varying,
+	user_id integer)
+LANGUAGE 'plpgsql'
+AS $BODY$
+    begin
+        if exists(select * from bookstore.cart where isbn = book_isbn AND u_id = user_id) then
+			update bookstore.cart set qty = qty - 1 where isbn = book_isbn and u_id = user_id;
+			update bookstore.book set stock = stock + 1 where isbn = book_isbn;
+		end if;
+		delete from bookstore.cart where qty = 0;
+    end;
+         
+$BODY$;
+
+
 

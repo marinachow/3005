@@ -1,4 +1,5 @@
 -- FUNCTION: bookstore.calculatebooklastmonthsales(character varying)
+-- Funtion to calculate the sum of book sales in the last month for one specified book
 
 -- DROP FUNCTION bookstore.calculatebooklastmonthsales(character varying);
 
