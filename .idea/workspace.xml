@@ -20,16 +20,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bc8f264-e147-4f5d-8723-a1f4ddbbec3e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/3005.iml" beforeDir="false" afterPath="$PROJECT_DIR$/3005.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Author.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Book.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Genre.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Publisher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookStoreApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/BookStoreApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3005/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3005/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3005/BookStoreApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3005/BookStoreApp.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="22TGFDL3F3ECcyGCAteSqll8MQ4" />
   <component name="ProjectLevelVcsManager">
@@ -86,43 +103,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="440" y="94" key="#Project_Structure" timestamp="1639854077847">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="440" y="94" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1639854077847" />
-    <state x="414" y="174" width="1092" height="739" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1639855464349">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="414" y="174" width="1092" height="739" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1639855464349" />
-    <state x="640" y="255" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1639854082477">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="640" y="255" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1639854082477" />
-    <state x="666" y="261" key="FileChooserDialogImpl" timestamp="1639855848378">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="666" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1639855848378" />
-    <state width="1877" height="296" key="GridCell.Tab.0.bottom" timestamp="1639855872858">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="296" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1639855872858" />
-    <state width="1877" height="296" key="GridCell.Tab.0.center" timestamp="1639855872858">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="296" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1639855872858" />
-    <state width="1877" height="296" key="GridCell.Tab.0.left" timestamp="1639855872857">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="296" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1639855872857" />
-    <state width="1877" height="296" key="GridCell.Tab.0.right" timestamp="1639855872858">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="296" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1639855872858" />
-    <state x="440" y="94" key="SettingsEditor" timestamp="1639855859539">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1639855859539" />
   </component>
 </project>
