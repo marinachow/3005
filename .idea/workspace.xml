@@ -19,17 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4bc8f264-e147-4f5d-8723-a1f4ddbbec3e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Author.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Book.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Genre.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Publisher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookStoreApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/BookStoreApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3005/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3005/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3005/BookStoreApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3005/BookStoreApp.class" afterDir="false" />
-    </list>
+    <list default="true" id="4bc8f264-e147-4f5d-8723-a1f4ddbbec3e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
