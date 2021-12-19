@@ -14,6 +14,7 @@ To test the DB:
 3. Use the bookstore.addbook(isbn character varying, title character varying, num_pages integer, price numeric, pub_id integer, percentage integer, stock integer) procedure to create books in the DB
 4. Use bookstore.addtocart(book_isbn character varying, user_id integer, book_qty integer) to simiulate adding the book to cart
 5. Use bookstore.checkout(user_id integer) to simulate a checkout
-6. Check that the stock went down by the quantity of books ordered with "select stock from bookstore.book where isbn = 'insert isbn here'"
+6. Check that the stock went down by the quantity of books ordered by using the select script on the a_book view
 7. Keep simulating checkouts until the stock goes below 10, which tiggers the trigger function to order the amount of book sold in the last month
 8. Use any of the add procedures to add more data to the DB
+9. Use the various views to observe created data
